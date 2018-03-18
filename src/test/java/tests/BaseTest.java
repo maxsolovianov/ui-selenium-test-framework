@@ -1,6 +1,6 @@
 package tests;
 
-import helpers.DriverInit;
+import helpers.DriverUtil;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 
@@ -10,6 +10,6 @@ public class BaseTest {
 
     @BeforeClass
     public static void BeforeAllTests() {
-        driver = DriverInit.initDriver();
+        driver = DriverUtil.initDriver();
     }
 }

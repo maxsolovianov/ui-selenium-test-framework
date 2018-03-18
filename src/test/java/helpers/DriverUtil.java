@@ -2,15 +2,29 @@ package helpers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class DriverInit {
+public class DriverUtil {
+
+    private static FirefoxOptions takeFireFoxOptions() {
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("-headless");
+        return firefoxOptions;
+    }
+
+    private static ChromeOptions takeChromeOptions() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        return chromeOptions;
+    }
 
     public static WebDriver initDriver() {
 
         WebDriver driver = null;
 
-        System.setProperty("browser", "chrome");
+        System.setProperty("browser", "firefox");
 
         String browserName = System.getProperty("browser");
 
@@ -20,14 +34,14 @@ public class DriverInit {
 
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 
-                driver = new ChromeDriver(BrowserOptions.takeChromeOptions());
+                driver = new ChromeDriver(takeChromeOptions());
             }
 
             if (browserName.toLowerCase().equals("firefox")) {
 
                 System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
 
-                driver = new FirefoxDriver(BrowserOptions.takeFireFoxOptions());
+                driver = new FirefoxDriver(takeFireFoxOptions());
             }
         }
         else {

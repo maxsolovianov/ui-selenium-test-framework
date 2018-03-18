@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest {
 
     @Category(HappyPath.class)
     @Test
-    public void testLogin() {
+    public void testLogin() throws InterruptedException {
         loginPage.findWebElement(LOGIN_EMAIL).sendKeys(LOGIN);
         loginPage.findWebElement(LOGIN_PASSWORD).sendKeys(PASSWORD);
         loginPage.findWebElement(BUTTON_SUBMIT).click();
