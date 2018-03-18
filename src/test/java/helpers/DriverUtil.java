@@ -20,14 +20,14 @@ public class DriverInit {
 
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(BrowserOptions.takeChromeOptions());
             }
 
             if (browserName.toLowerCase().equals("firefox")) {
 
                 System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
 
-                driver = new FirefoxDriver();
+                driver = new FirefoxDriver(BrowserOptions.takeFireFoxOptions());
             }
         }
         else {
