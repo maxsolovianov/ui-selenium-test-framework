@@ -6,19 +6,17 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.util.concurrent.TimeUnit;
-
 public class DriverUtil {
 
     private static FirefoxOptions takeFireFoxOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        //firefoxOptions.addArguments("-headless");
+        firefoxOptions.addArguments("-headless");
         return firefoxOptions;
     }
 
     private static ChromeOptions takeChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--headless");
         return chromeOptions;
     }
 

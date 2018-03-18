@@ -1,10 +1,8 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,13 +20,9 @@ public class BasePage {
         driver.get(PAGE_URL);
     }
 
-    public void closePage() {
-        driver.close();
-    }
+    public void closePage() { driver.close(); }
 
-    public void quitBrowser() {
-        driver.quit();
-    }
+    public void quitBrowser() { driver.quit(); }
 
     public void openLink(String url) {
         driver.get(url);
@@ -67,11 +61,6 @@ public class BasePage {
         wait.until(ExpectedConditions.invisibilityOf(elementTobeInvisible));
     }
 
-    public void waitForDocumentReadyState() {
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-    }
-
     public void waitPresenceOfElementLocated(By by) {
         WebDriverWait wait = new WebDriverWait(driver, 20, 500);
         wait.until(ExpectedConditions.presenceOfElementLocated((by)));
@@ -79,7 +68,7 @@ public class BasePage {
 
     public WebElement findWebElement(By by) {
 
-        WebElement webElement = null;
+        WebElement webElement;
 
         try {
             webElement = new WebDriverWait(driver, 10, 500).
@@ -89,7 +78,6 @@ public class BasePage {
 
             System.out.println("ERROR: The element " + by.toString() + " was not found!");
             return null;
-
         }
         return webElement;
     }
