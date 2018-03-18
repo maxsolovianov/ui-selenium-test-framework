@@ -2,10 +2,7 @@ package tests;
 
 import org.junit.Assert;
 import org.junit.experimental.categories.Category;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import testOrganization.HappyPath;
 
@@ -19,22 +16,26 @@ public class LoginTests extends TestClass {
     @BeforeClass
     public static void toDoBeforeAllTests() {
         loginPage = new LoginPage(driver);
-        loginPage.openPage();
     }
 
     @AfterClass
     public static void toDoAfterAllTests() {
-        //loginPage.quitBrowser();
+        loginPage.quitBrowser();
     }
 
-    @AfterTest
+    @BeforeMethod
+    public static void beforeTest() {
+        loginPage.openPage();
+    }
+
+    @AfterMethod
     public static void afterTest() {
-        loginPage.closePage();
     }
 
     @Category(HappyPath.class)
     @Test
     public void testLogin() {
+        loginPage.waitPresenceOfElementLocated(LOGIN_EMAIL);
         loginPage.findWebElement(LOGIN_EMAIL).sendKeys(LOGIN);
         loginPage.findWebElement(LOGIN_PASSWORD).sendKeys(PASSWORD);
         loginPage.findWebElement(BUTTON_SUBMIT).click();

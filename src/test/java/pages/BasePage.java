@@ -72,6 +72,11 @@ public class BasePage {
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
     }
 
+    public void waitPresenceOfElementLocated(By by) {
+        WebDriverWait wait = new WebDriverWait(driver, 20, 500);
+        wait.until(ExpectedConditions.presenceOfElementLocated((by)));
+    }
+
     public WebElement findWebElement(By by) {
 
         WebElement webElement = null;

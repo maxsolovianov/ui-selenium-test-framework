@@ -12,13 +12,13 @@ public class DriverUtil {
 
     private static FirefoxOptions takeFireFoxOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.addArguments("-headless");
+        //firefoxOptions.addArguments("-headless");
         return firefoxOptions;
     }
 
     private static ChromeOptions takeChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
+        //chromeOptions.addArguments("--headless");
         return chromeOptions;
     }
 
@@ -51,11 +51,6 @@ public class DriverUtil {
 
             driver = new FirefoxDriver();
         }
-
-        //driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-
-        //driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS );
-
         return driver;
     }
 }
