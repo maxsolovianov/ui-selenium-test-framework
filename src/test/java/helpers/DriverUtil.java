@@ -17,6 +17,7 @@ public class DriverUtil {
     private static ChromeOptions takeChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--no-sandbox");
         return chromeOptions;
     }
 
@@ -32,7 +33,7 @@ public class DriverUtil {
 
             if (browserName.toLowerCase().equals("chrome")) {
 
-                // System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+                //System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 
                 driver = new ChromeDriver(takeChromeOptions());
             }
