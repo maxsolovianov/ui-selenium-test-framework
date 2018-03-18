@@ -1,12 +1,16 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 
     public WebDriver driver;
 
-    public BasePage (WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -20,7 +24,7 @@ public class BasePage {
         driver.close();
     }
 
-    public void openLink (String url) {
+    public void openLink(String url) {
         driver.get(url);
     }
 
@@ -28,16 +32,16 @@ public class BasePage {
         driver.manage().window().maximize();
     }
 
-    public void getCurrentURL() {
-        driver.getCurrentUrl();
+    public String getCurrentURL() {
+        return driver.getCurrentUrl();
     }
 
-    public void getCurrentTitle() {
-        driver.getTitle();
+    public String getCurrentTitle() {
+        return driver.getTitle();
     }
 
-    public void getPageSource() {
-        driver.getPageSource();
+    public String getPageSource() {
+        return driver.getPageSource();
     }
 
     public void goForward() {
@@ -50,5 +54,22 @@ public class BasePage {
 
     public void refreshPage() {
         driver.navigate().refresh();
+    }
+
+    public WebElement findWebElement(By by) {
+
+        WebElement webElement = null;
+
+        try {
+            webElement = new WebDriverWait(driver, 10, 500).
+                    until(ExpectedConditions.visibilityOf(driver.findElement(by)));
+
+        } catch (org.openqa.selenium.NoSuchElementException exception) {
+
+            System.out.println("ERROR: The element " + by.toString() + " was not found!");
+            return null;
+
+        }
+        return webElement;
     }
 }

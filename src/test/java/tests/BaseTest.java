@@ -12,5 +12,4 @@ public class BaseTest {
     public static void BeforeAllTests() {
         driver = DriverInit.initDriver();
     }
-
 }
