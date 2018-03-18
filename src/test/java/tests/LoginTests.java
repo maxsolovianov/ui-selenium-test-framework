@@ -28,10 +28,11 @@ public class LoginTests extends BaseTest {
 
     @Category(HappyPath.class)
     @Test
-    public void testLogin() throws InterruptedException {
+    public void testLogin() {
         loginPage.findWebElement(LOGIN_EMAIL).sendKeys(LOGIN);
         loginPage.findWebElement(LOGIN_PASSWORD).sendKeys(PASSWORD);
         loginPage.findWebElement(BUTTON_SUBMIT).click();
+        loginPage.findWebElement(PAGE_CONTAINER).click();
         Assert.assertEquals(URL_PORTAL, loginPage.getCurrentURL());
         Assert.assertEquals(TITLE_PORTAL, loginPage.getCurrentTitle());
     }

@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.util.concurrent.TimeUnit;
+
 public class DriverUtil {
 
     private static FirefoxOptions takeFireFoxOptions() {
@@ -16,7 +18,7 @@ public class DriverUtil {
 
     private static ChromeOptions takeChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
+        //chromeOptions.addArguments("--headless");
         return chromeOptions;
     }
 
@@ -24,7 +26,7 @@ public class DriverUtil {
 
         WebDriver driver = null;
 
-        System.setProperty("browser", "firefox");
+        System.setProperty("browser", "chrome");
 
         String browserName = System.getProperty("browser");
 
@@ -49,6 +51,10 @@ public class DriverUtil {
 
             driver = new FirefoxDriver();
         }
+
+        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+
+        driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS );
 
         return driver;
     }
