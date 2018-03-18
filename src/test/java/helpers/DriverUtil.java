@@ -32,7 +32,7 @@ public class DriverUtil {
 
             if (browserName.toLowerCase().equals("chrome")) {
 
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 
                 driver = new ChromeDriver(takeChromeOptions());
             }
