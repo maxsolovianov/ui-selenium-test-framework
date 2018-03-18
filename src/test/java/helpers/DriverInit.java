@@ -10,7 +10,7 @@ public class DriverInit {
 
         WebDriver driver = null;
 
-        System.setProperty("browser", "firefox");
+        System.setProperty("browser", "chrome");
 
         String browserName = System.getProperty("browser");
 
@@ -37,10 +37,6 @@ public class DriverInit {
         }
 
         return driver;
-    }
-
-    public static void main (String[] args) {
-        DriverInit.initDriver();
     }
 }
 
