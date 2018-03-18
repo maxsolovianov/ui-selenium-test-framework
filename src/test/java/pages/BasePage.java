@@ -1,8 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,6 +24,10 @@ public class BasePage {
 
     public void closePage() {
         driver.close();
+    }
+
+    public void quitBrowser() {
+        driver.quit();
     }
 
     public void openLink(String url) {
@@ -54,6 +60,16 @@ public class BasePage {
 
     public void refreshPage() {
         driver.navigate().refresh();
+    }
+
+    public void waitUntilElementGetsInvisible(WebElement elementTobeInvisible) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.invisibilityOf(elementTobeInvisible));
+    }
+
+    public void waitForDocumentReadyState() {
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
     }
 
     public WebElement findWebElement(By by) {

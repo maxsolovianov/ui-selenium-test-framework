@@ -3,6 +3,7 @@ package tests;
 import org.junit.Assert;
 import org.junit.experimental.categories.Category;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -11,7 +12,7 @@ import testOrganization.HappyPath;
 import static helpers.TestData.*;
 import static pages.LoginPage.*;
 
-public class LoginTests extends BaseTest {
+public class LoginTests extends TestClass {
 
     public static LoginPage loginPage;
 
@@ -23,6 +24,11 @@ public class LoginTests extends BaseTest {
 
     @AfterClass
     public static void toDoAfterAllTests() {
+        //loginPage.quitBrowser();
+    }
+
+    @AfterTest
+    public static void afterTest() {
         loginPage.closePage();
     }
 
@@ -32,8 +38,8 @@ public class LoginTests extends BaseTest {
         loginPage.findWebElement(LOGIN_EMAIL).sendKeys(LOGIN);
         loginPage.findWebElement(LOGIN_PASSWORD).sendKeys(PASSWORD);
         loginPage.findWebElement(BUTTON_SUBMIT).click();
-        loginPage.findWebElement(PAGE_CONTAINER).click();
+        loginPage.waitUntilElementGetsInvisible(loginPage.findWebElement(PAGE_LOADER));
+        Assert.assertEquals(MERCHANT_PORTAL, loginPage.getCurrentTitle());
         Assert.assertEquals(URL_PORTAL, loginPage.getCurrentURL());
-        Assert.assertEquals(TITLE_PORTAL, loginPage.getCurrentTitle());
     }
 }
