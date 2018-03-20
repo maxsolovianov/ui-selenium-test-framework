@@ -39,6 +39,45 @@
         <plugins>
 
             <plugin>
+                <groupId>ch.fortysix</groupId>
+                <artifactId>maven-postman-plugin</artifactId>
+                <configuration>
+                    <skip>false</skip>
+                    <from>testexecutionreporter@gmail.com</from>
+                    <failonerror>true</failonerror>
+                    <mailhost>smtp.gmail.com</mailhost>
+                    <mailport>465</mailport>
+                    <mailssl>true</mailssl>
+                    <mailAltConfig>true</mailAltConfig>
+                    <mailuser>testexecutionreporter</mailuser>
+                    <mailpassword>testexecutionreporter123</mailpassword>
+                    <receivers>
+                        <receiver>maxsolovyanov@gmail.com</receiver>
+                    </receivers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>send surefire notification</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>surefire-mail</goal>
+                        </goals>
+                        <configuration>
+                            <subject>Test Execution Report</subject>
+                            <groovyCondition><![CDATA[total > 0 || errors > 0 || failures > 0]]></groovyCondition>
+                            <failonerror>true</failonerror>
+                            <htmlMessageFile>
+                                ${basedir}/target/surefire-reports/testng-native-results/emailable-report.html
+                            </htmlMessageFile>
+                            <receivers>
+                                <receiver>maxsolovyanov@gmail.com</receiver>
+                            </receivers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
